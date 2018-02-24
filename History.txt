@@ -1,6 +1,13 @@
+=== 10.0.0 / Unreleased
+
+* Enhancements
+
+  * Merged into Active Record
+
 === 9.0.0 / 2017-11-14
 
 * Enhancements
+
   * `InsertManager#insert` is now chainable
   * Support multiple inserts
 
