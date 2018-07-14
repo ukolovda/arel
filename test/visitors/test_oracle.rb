@@ -117,7 +117,7 @@ module Arel
             sql = compile stmt
             sql.must_be_like %{
               SELECT * FROM (
-                SELECT raw_sql_.*, rownum raw_rnum_
+                SELECT /*+ FIRST_ROWS */ raw_sql_.*, rownum raw_rnum_
                 FROM (SELECT ) raw_sql_
                  WHERE rownum <= 20
               )
@@ -132,7 +132,7 @@ module Arel
             sql = compile stmt
             sql.must_be_like %{
               SELECT * FROM (
-                SELECT raw_sql_.*, rownum raw_rnum_
+                SELECT /*+ FIRST_ROWS */ raw_sql_.*, rownum raw_rnum_
                 FROM (SELECT ) raw_sql_
                  WHERE rownum <= (:a1 + :a2)
               )

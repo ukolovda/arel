@@ -23,7 +23,7 @@ module Arel
           o.offset = nil
           collector << "
               SELECT * FROM (
-                SELECT raw_sql_.*, rownum raw_rnum_
+                SELECT /*+ FIRST_ROWS */ raw_sql_.*, rownum raw_rnum_
                 FROM ("
 
           collector = super(o, collector)
