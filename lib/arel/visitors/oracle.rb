@@ -29,10 +29,9 @@ module Arel
           collector = super(o, collector)
 
           if offset.expr.is_a? Nodes::BindParam
+            # Oracle can make more optimal plan, if predicate have constant values in SQL, not binding.
             collector << ') raw_sql_ WHERE rownum <= ('
-            collector = visit offset.expr, collector
-            collector << ' + '
-            collector = visit limit, collector
+            collector << "#{offset.expr.value.to_s.to_i + limit.value.to_s.to_i}"
             collector << ") ) WHERE raw_rnum_ > "
             collector = visit offset.expr, collector
             return collector
